@@ -1,3 +1,4 @@
+import { envs } from "./config";
 import { Server } from "./presentation/server";
 
 
@@ -16,7 +17,7 @@ async function main(){
 
     //TODO: inicio de nuestro server, esto se comunica con la capa de presentasion.
     new Server({
-        port: 3000
+        port: envs.PORT
     })
       .start();
 }

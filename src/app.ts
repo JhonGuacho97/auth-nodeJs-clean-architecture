@@ -1,25 +1,27 @@
 import { envs } from "./config";
+import { MongoDatabase } from "./data/mongodb";
 import { AppRoutes } from "./presentation/routes";
 import { Server } from "./presentation/server";
 
 
-//TODO: Funcion autoinvocada
+
+
+//Funcion autoinvocada
 (() => {
-    main();
-})()
+  main();
+})();
 
+async function main() {
 
+  //conexion a la base de datos MONGODB
+  await MongoDatabase.connect({
+    dbName: envs.MONGO_DB_NAME,
+    mongoUrl: envs.MONGO_URL,
+  });
 
-async function main(){
-
-    //TODO: await base de datos
-
-
-
-    //TODO: inicio de nuestro server, esto se comunica con la capa de presentasion.
-    new Server({
-        port: envs.PORT,
-        routes: AppRoutes.routes
-    })
-      .start();
+  //Servidor levantado en express
+  new Server({
+    port: envs.PORT,
+    routes: AppRoutes.routes,
+  }).start();
 }

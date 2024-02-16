@@ -16,7 +16,7 @@ export class AuthRoutes{
         const authRepository = new AuthRepositoryImpl(dataSource);
         const controller = new AuthController(authRepository);
 
-        //TODO: definir todas las rutas principales
+        //RUTAS PRINCIPALES
         router.post('/login', controller.loginUser)
         router.post('/register', controller.registerUser)
         router.get('/', [AuthMiddleware.validateJWT], controller.getUser)

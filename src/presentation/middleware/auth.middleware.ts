@@ -12,7 +12,7 @@ export class AuthMiddleware {
 
         const token = authorization.split(' ').at(1) || '';
         
-        try {
+        try { 
 
             const payload = await JwtAdapter.validateToken<{ id: string }>(token);
             if(!payload) return res.status(401).json({error: 'Token no valido'});
